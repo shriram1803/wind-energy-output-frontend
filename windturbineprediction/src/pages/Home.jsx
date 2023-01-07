@@ -2,7 +2,13 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className='flex '>
+      <div className='flex'>
+        <span className="flex font-poppins font-semibold text-6xl text-center text-gradient">
+          Welcome To Wind Turbine Power Prediction
+        </span>
+      </div>
+    </div>
   )
 }
 
