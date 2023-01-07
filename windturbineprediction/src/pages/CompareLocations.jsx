@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import {Card, CardContent,CardActions,Button,TextField} from '@mui/material';
+import { toast } from 'react-toastify';
 
 const CompareLocations = () => {
   const [latitude1, setLatitude1] = useState('');
@@ -8,12 +9,49 @@ const CompareLocations = () => {
   const [longitude2, setLongitude2] = useState('');
   const [output, setOutput] = useState('');
 
+  const Predict = async () =>
+        await toast.promise(
+            fetch('https://wind-api.onrender.com/predict-lat-and-lng', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    apikey: '8168408ee3a0dfcbe3a645396b073bc4',
+                    lat: latitude1,
+                    lng: longitude1
+                })
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    setOutput(Math.abs(json.result));
+                }),
+            fetch('https://wind-api.onrender.com/predict-lat-and-lng', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    apikey: '8168408ee3a0dfcbe3a645396b073bc4',
+                    lat: latitude2,
+                    lng: longitude2
+                })
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    setOutput2(Math.abs(json.result));
+                    // setisOutput(true);
+                }),
+            {
+                pending: 'Predicting from the server',
+                success: 'Prediction completed 👌',
+                error: 'Prediction rejected 🤯'
+            }
+        );
+
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (latitude1 && longitude1 && latitude2 && longitude2){
-      console.log("Submitted");
-      console.log(latitude1,longitude1,latitude2,longitude2);
-      setOutput("Yes");
+      Predict();
+      // console.log("Submitted");
+      // console.log(latitude1,longitude1,latitude2,longitude2);
+      // setOutput("Yes");
     }
     
   }

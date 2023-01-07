@@ -1,17 +1,41 @@
 import React,{useState} from 'react'
 import {Card, CardContent,CardActions,Button,TextField} from '@mui/material';
+import { toast } from 'react-toastify';
 
 const PredictManual = () => {
   const [speed, setSpeed] = useState('');
   const [direction, setDirection] = useState('');
   const [output, setOutput] = useState('');
 
+  const Predict = async () =>
+        await toast.promise(
+            fetch('https://wind-api.onrender.com/predict-ws-and-wd', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ws: speed,
+                    wd: direction
+                })
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    setOutput(json.result);
+                    // setisOutput(true);
+                }),
+            {
+                pending: 'Predicting from the server',
+                success: 'Prediction completed 👌',
+                error: 'Prediction rejected 🤯'
+            }
+        );
+
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (speed && direction){
-      console.log("Submitted");
-      console.log(speed,direction);
-      setOutput("Yes");
+      Predict();
+      // console.log("Submitted");
+      // console.log(speed,direction);
+      // setOutput("Yes");
     }
     
   }

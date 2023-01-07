@@ -1,17 +1,42 @@
 import React,{useState} from 'react'
 import {Card, CardContent,CardActions,Button,TextField} from '@mui/material';
+import { toast } from 'react-toastify';
 
 const PredictLocation = () => {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [output, setOutput] = useState('');
 
+  const Predict = async () =>
+        await toast.promise(
+            fetch('https://wind-api.onrender.com/predict-lat-and-lng', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    apikey: '8168408ee3a0dfcbe3a645396b073bc4',
+                    lat: latitude,
+                    lng: longitude
+                })
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    setOutput(Math.abs(json.result));
+                    // setisOutput(true);
+                }),
+            {
+                pending: 'Predicting from the server',
+                success: 'Prediction completed 👌',
+                error: 'Prediction rejected 🤯'
+            }
+        );
+
   const handleSubmit = (e) =>{
     e.preventDefault();
     if (latitude && longitude){
-      console.log("Submitted");
-      console.log(latitude,longitude);
-      setOutput("Yes");
+      Predict();
+      // console.log("Submitted");
+      // console.log(latitude,longitude);
+      // setOutput("Yes");
     }
     
   }
