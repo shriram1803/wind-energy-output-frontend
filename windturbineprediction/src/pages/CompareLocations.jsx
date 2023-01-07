@@ -8,6 +8,7 @@ const CompareLocations = () => {
   const [latitude2, setLatitude2] = useState('');
   const [longitude2, setLongitude2] = useState('');
   const [output, setOutput] = useState('');
+  const [output2, setOutput2] = useState('');
 
   const Predict = async () =>
         await toast.promise(
@@ -91,8 +92,12 @@ const CompareLocations = () => {
         <Button type='submit' onClick={handleSubmit}>Submit</Button>
       </CardActions>
       {output && <div className='flex flex-row my-10 justify-center items-center'>
-        <span className='font-poppins font-semibold text-lg text-gradient mx-5'>Output: </span>
+        <span className='font-poppins font-semibold text-lg text-gradient mx-5'>Wind Power for Location 1: </span>
         <span className='font-poppins font-semibold text-lg text-gradient mx-5'>{output}</span>
+      </div>}
+      {output2 && <div className='flex flex-row my-10 justify-center items-center'>
+        <span className='font-poppins font-semibold text-lg text-gradient mx-5'>Wind Power for Location 2: </span>
+        <span className='font-poppins font-semibold text-lg text-gradient mx-5'>{output2}</span>
       </div>}
     </div>
   )
