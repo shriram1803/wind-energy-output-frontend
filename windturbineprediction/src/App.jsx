@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route, Routes,Link } from 'react-router-dom';
 import { Home,About,PredictLocation,PredictManual,CompareLocations } from './pages';
 import { Nav } from 'react-bootstrap';
