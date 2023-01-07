@@ -1,27 +1,14 @@
 import React from 'react'
-import { Route, Routes,Link } from 'react-router-dom';
-import { Home,About,PredictLocation,PredictManual,CompareLocations } from './pages';
-import { Nav } from 'react-bootstrap';
-import { logo } from './assets';
+import { Route, Routes } from 'react-router-dom';
+import { Home,About,PredictLocation,PredictManual,CompareLocations, Navbar } from './pages';
+
 function App() {
   return (
-    <div className="flex flex-col">
-      <div className='flex bg-header text-white justify-between items-center '>
-        <div className='flex mx-5'>
-          <img src={logo} className='h-20 w-20'/>
-        </div>
-        <div className='flex'>
-          <Nav variant="tabs" defaultActiveKey="/" className='flex flex-row'>
-            <Nav.Item className='flex p-5 '>
-              <Link to={"/"} className='flex p-5 hover:scale-105'>Home</Link>
-              <Link to={"/about"} className='flex p-5 hover:scale-105'>About</Link>
-              <Link to={"/predictlocation" }className='flex p-5 hover:scale-105'>Predict Location</Link>
-              <Link to={"/predictmanual"} className='flex p-5 hover:scale-105'>Predict Manual</Link>
-              <Link to={"/comparelocations"} className='flex p-5 hover:scale-105'>Compare Locations</Link>
-            </Nav.Item>
-          </Nav>
-        </div>
+    <div className="flex flex-col overflow-hidden">
+      <div className='w-full z-[10] bg-header'>
+        <Navbar/>
       </div>
+      
       <div className='flex'>
         <Routes>
           <Route path='/' element={<Home/>}/> 
@@ -31,6 +18,7 @@ function App() {
           <Route path='/comparelocations' element={<CompareLocations/>}/> 
         </Routes>
       </div>
+
     </div>
   )
 }
