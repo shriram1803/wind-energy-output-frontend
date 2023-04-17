@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import { Home,About,PredictLocation,PredictManual,CompareLocations, Navbar } from './pages';
+import { Home,About,PredictLocation,PredictManual,CompareLocations, Navbar, Dashboard } from './pages';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
           <Route path='/predictlocation' element={<PredictLocation/>}/> 
           <Route path='/predictmanual' element={<PredictManual/>}/> 
           <Route path='/comparelocations' element={<CompareLocations/>}/> 
+          <Route path='/dashboard' element={<Dashboard/>} />
         </Routes>
       </div>
 

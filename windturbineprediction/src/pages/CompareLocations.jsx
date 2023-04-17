@@ -50,9 +50,6 @@ const CompareLocations = () => {
     e.preventDefault();
     if (latitude1 && longitude1 && latitude2 && longitude2){
       Predict();
-      // console.log("Submitted");
-      // console.log(latitude1,longitude1,latitude2,longitude2);
-      // setOutput("Yes");
     }
     
   }

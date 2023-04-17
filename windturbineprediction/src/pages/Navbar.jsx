@@ -13,6 +13,7 @@ const Navbar = () => {
         <ul className='list-none sm:flex hidden justify-end items-center flex-1 text-white'>
             <Link to={"/"} className='flex p-5 hover:scale-105'>Home</Link>
             <Link to={"/about"} className='flex p-5 hover:scale-105'>About</Link>
+            <Link to={"/dashboard"} className='flex p-5 hover:scale-105'>Dashboard</Link>
             <Link to={"/predictlocation" }className='flex p-5 hover:scale-105'>Predict Location</Link>
             <Link to={"/predictmanual"} className='flex p-5 hover:scale-105'>Predict Manual</Link>
             <Link to={"/comparelocations"} className='flex p-5 hover:scale-105'>Compare Locations</Link>

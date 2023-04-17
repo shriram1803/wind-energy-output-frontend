@@ -34,9 +34,6 @@ const PredictLocation = () => {
     e.preventDefault();
     if (latitude && longitude){
       Predict();
-      // console.log("Submitted");
-      // console.log(latitude,longitude);
-      // setOutput("Yes");
     }
     
   }
